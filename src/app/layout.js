@@ -1,4 +1,4 @@
-"use client"
+
 import { GlobalStyle } from "@/styles/global"
 
 export const metadata = {
