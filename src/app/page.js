@@ -6,8 +6,8 @@ import * as S from "../styles/home";
 import { Modal } from "@/components/Modal";
 
 export default function Home() {
-  const [user, setUsers] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
+  const [user, setUsers] = useState([]);
   const [selectedUser, setSelectedUser] = useState(null);
 
 
@@ -16,7 +16,6 @@ export default function Home() {
     setModalOpen(true);
     setSelectedUser(user);
   }
-
 
   // fechar modal
   function closeModal() {

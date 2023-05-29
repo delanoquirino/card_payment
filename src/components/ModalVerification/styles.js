@@ -1,15 +1,15 @@
 import styled from "styled-components";
+import ReactModal from "react-modal";
 
 
-
-export const ModalSuccess = styled.div`
+export const Modal = styled(ReactModal)`
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: #fff;
-    height: 300px;
-    width: 500px;
+    height: auto;
+    width: 50%;
     border-radius: 5px;
     
 `
@@ -18,15 +18,7 @@ export const Header = styled.header`
    display: flex;
    align-items: center;
    color: #fff;
-   height: 50px;
    padding-left: 10px;
 
-   
-`
-export const Text = styled.div`
-    font-size: 20px;
-    text-align: center;
-    margin-top: 5rem;
-
-   
+ 
 `
