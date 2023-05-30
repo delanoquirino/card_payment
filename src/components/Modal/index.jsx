@@ -29,6 +29,7 @@ export const Modal = ({ open, close, selectUser }) => {
             if (!selectUser) return;
             const selectedCard = cards.find((card) => card.card_number === values.selectcard);
 
+
             if (selectedCard) {
                 fetch("https://run.mocky.io/v3/533cd5d7-63d3-4488-bf8d-4bb8c751c989", {
                     method: "POST",
@@ -61,7 +62,7 @@ export const Modal = ({ open, close, selectUser }) => {
                 <>
                     <S.Header>
                         <h3>
-                            Pagamento para <span>{selectUser.name}</span>
+                            Pagamento para {selectUser && <span>{selectUser.name}</span>}
                         </h3>
                     </S.Header>
 

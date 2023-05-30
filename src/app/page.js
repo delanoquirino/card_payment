@@ -15,7 +15,6 @@ export default function Home() {
   const openModal = (user) => {
     setModalOpen(true);
     setSelectedUser(user);
-    console.log(selectedUser)
 
   }
 
