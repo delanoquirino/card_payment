@@ -12,13 +12,15 @@ export default function Home() {
 
 
   // abrir modal
-  function openModal(user) {
+  const openModal = (user) => {
     setModalOpen(true);
     setSelectedUser(user);
+    console.log(selectedUser)
+
   }
 
   // fechar modal
-  function closeModal() {
+  const closeModal = () => {
     setModalOpen(false);
     setSelectedUser(null);
   }
@@ -55,11 +57,12 @@ export default function Home() {
         ))}
       </ul>
       <Modal open={modalOpen}
-        close={() => {
-          closeModal();
-        }}
+        close={
+          closeModal
+        }
         selectUser={selectedUser}
       />
+
     </main>
   )
 }

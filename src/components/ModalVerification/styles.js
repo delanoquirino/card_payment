@@ -2,7 +2,7 @@ import styled from "styled-components";
 import ReactModal from "react-modal";
 
 
-export const Modal = styled(ReactModal)`
+export const ModalVerification = styled(ReactModal)`
     position: fixed;
     top: 50%;
     left: 50%;
@@ -20,5 +20,8 @@ export const Header = styled.header`
    color: #fff;
    padding-left: 10px;
 
- 
 `
+
+export const Verification = styled.div`
+`
+
