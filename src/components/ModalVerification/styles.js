@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import ReactModal from "react-modal";
 
 
-export const ModalVerification = styled(ReactModal)`
+
+export const ModalVerification = styled.div`
     position: fixed;
     top: 50%;
     left: 50%;

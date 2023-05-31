@@ -48,7 +48,6 @@ export const Modal = ({ open, close, selectUser }) => {
                             setModalSuccess(true);
                             alert("Pagamento concluido com sucesso");
                             close()
-                            return <ModalVerification />
                         } else {
                             alert("Erro no pagamento");
                         }

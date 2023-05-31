@@ -4,7 +4,7 @@ export const ModalVerification = (prop) => {
 
     return (
 
-        <S.ModalVerification isOpen={open} >
+        <S.ModalVerification>
             <S.Header>
                 <h3>
                     Recibo de pagamento
