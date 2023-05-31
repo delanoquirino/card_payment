@@ -1,6 +1,7 @@
 import { useState } from "react";
 import * as S from "./styles";
 import { useFormik } from "formik";
+import { ModalVerification } from "../ModalVerification";
 
 let cards = [
     // valid card
@@ -45,6 +46,9 @@ export const Modal = ({ open, close, selectUser }) => {
                     .then((response) => {
                         if (selectedCard.card_number === "1111111111111111") {
                             setModalSuccess(true);
+                            alert("Pagamento concluido com sucesso");
+                            close()
+                            return <ModalVerification />
                         } else {
                             alert("Erro no pagamento");
                         }
