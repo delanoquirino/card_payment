@@ -1,7 +1,6 @@
 import { useState } from "react";
 import * as S from "./styles";
 import { useFormik } from "formik";
-import { ModalVerification } from "../ModalVerification";
 
 let cards = [
     // valid card
@@ -18,8 +17,8 @@ let cards = [
     },
 ];
 
-export const Modal = ({ open, close, selectUser }) => {
-    const [modalSuccess, setModalSuccess] = useState(false);
+export const Modal = ({ open, close, selectUser, openSuccess }) => {
+
 
     const formik = useFormik({
         initialValues: {
@@ -28,7 +27,7 @@ export const Modal = ({ open, close, selectUser }) => {
         },
         onSubmit: (values) => {
             if (!selectUser) return;
-            const selectedCard = cards.find((card) => card.card_number === values.selectcard);
+            const selectedCard = cards[values.selectcard]
 
 
             if (selectedCard) {
@@ -45,16 +44,13 @@ export const Modal = ({ open, close, selectUser }) => {
                     .then((resJson) => resJson.json())
                     .then((response) => {
                         if (selectedCard.card_number === "1111111111111111") {
-                            setModalSuccess(true);
-                            alert("Pagamento concluido com sucesso");
+                            openSuccess(true);
                             close()
                         } else {
-                            alert("Erro no pagamento");
+                            close()
                         }
                     })
-                    .catch((err) => {
-                        console.error("Ocorreu um erro na solicitação:", err);
-                    });
+                    
             }
         },
     });
@@ -71,12 +67,14 @@ export const Modal = ({ open, close, selectUser }) => {
 
                     <S.Form onSubmit={formik.handleSubmit}>
                         <label htmlFor="Valor">Valor:</label>
-                        <input
+                        <input 
                             type="number"
                             name="payment"
                             placeholder="R$ 00,00"
                             onChange={formik.handleChange}
                             value={formik.values.payment}
+                         
+                             
                         />
                         <label htmlFor="Cartao">Selecione o Cartão:</label>
                         <select
@@ -84,9 +82,9 @@ export const Modal = ({ open, close, selectUser }) => {
                             onChange={formik.handleChange}
                             value={formik.values.selectcard}
                         >
-                            {cards.map(({ card_number }) => {
+                            {cards.map(({ card_number }, index) => {
                                 return (
-                                    <option key={card_number} value={card_number}>
+                                    <option key={card_number} value={index}>
                                         Cartão com final: {card_number.slice(-4)}
                                     </option>
                                 );

@@ -4,11 +4,13 @@ import { useEffect, useState } from "react";
 //style
 import * as S from "../styles/home";
 import { Modal } from "@/components/Modal";
+import { ModalVerification } from "@/components/ModalVerification";
 
 export default function Home() {
   const [modalOpen, setModalOpen] = useState(false);
   const [user, setUsers] = useState([]);
   const [selectedUser, setSelectedUser] = useState(null);
+  const [modalSuccess, setModalSuccess] = useState(false);
 
 
   // abrir modal
@@ -59,9 +61,10 @@ export default function Home() {
         close={
           closeModal
         }
+        openSuccess={setModalSuccess}
         selectUser={selectedUser}
       />
-
+      {modalSuccess && <ModalVerification close={() => {setModalSuccess(false)}}/> }
     </main>
   )
 }
