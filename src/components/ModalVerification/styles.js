@@ -23,5 +23,13 @@ export const Header = styled.header`
 `
 
 export const Verification = styled.div`
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+
+button {
+   margin: 1rem;
+}
 `
 

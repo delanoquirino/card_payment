@@ -1,4 +1,4 @@
-import { useState } from "react";
+
 import * as S from "./styles";
 import { useFormik } from "formik";
 
@@ -17,19 +17,19 @@ let cards = [
     },
 ];
 
-export const Modal = ({ open, close, selectUser, openSuccess }) => {
+export const Modal = ({ open, close, selectUser, openSuccess, Invalid }) => {
 
-
+  
     const formik = useFormik({
         initialValues: {
             payment: "",
             selectcard: "",
         },
+       
         onSubmit: (values) => {
             if (!selectUser) return;
             const selectedCard = cards[values.selectcard]
-
-
+     
             if (selectedCard) {
                 fetch("https://run.mocky.io/v3/533cd5d7-63d3-4488-bf8d-4bb8c751c989", {
                     method: "POST",
@@ -42,11 +42,14 @@ export const Modal = ({ open, close, selectUser, openSuccess }) => {
                     }),
                 })
                     .then((resJson) => resJson.json())
-                    .then((response) => {
+                    .then(() => {
                         if (selectedCard.card_number === "1111111111111111") {
                             openSuccess(true);
+                            Invalid(false)
                             close()
                         } else {
+                            openSuccess(true);
+                            Invalid(true)
                             close()
                         }
                     })
@@ -55,6 +58,38 @@ export const Modal = ({ open, close, selectUser, openSuccess }) => {
         },
     });
 
+    
+    const formatNumber = (valor) => {
+        valor = valor.replace(/(\d)(\d{2})$/, '$1,$2');
+    
+        //separador de milhar
+        valor = valor.replace(/\d(?=(\d{3})+\,)/g, '$&.');
+    
+        return valor;
+    }
+
+    const mask = (e) => {
+        let valor = e.target.value;
+
+    // Remove todos os caracteres não numéricos
+    valor = valor.replace(/\D/g, '');
+
+    valor = valor.replace(/^0+/, '');
+
+    // Formata a parte decimal  digitar
+    if (valor.length <= 2) {
+        valor = ("000" + valor).slice(-3)
+    }
+
+
+    valor = formatNumber(valor);
+
+    e.target.value = 'R$ ' + valor;
+   }
+    
+   
+   
+    
     return (
         <>
             <S.Modal isOpen={open}>
@@ -67,15 +102,21 @@ export const Modal = ({ open, close, selectUser, openSuccess }) => {
 
                     <S.Form onSubmit={formik.handleSubmit}>
                         <label htmlFor="Valor">Valor:</label>
+                        
                         <input 
-                            type="number"
+                            type="text"
                             name="payment"
                             placeholder="R$ 00,00"
                             onChange={formik.handleChange}
                             value={formik.values.payment}
+                            onKeyUp={mask}
+                            required
                          
-                             
                         />
+                              
+
+
+
                         <label htmlFor="Cartao">Selecione o Cartão:</label>
                         <select
                             name="selectcard"

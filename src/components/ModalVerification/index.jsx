@@ -1,6 +1,7 @@
 import * as S from "./styles";
 
-export const ModalVerification = (prop, transaçãoConcluida) => {
+export const ModalVerification = ({close, teste}) => {
+    console.log(teste)
 
     return (
 
@@ -12,9 +13,9 @@ export const ModalVerification = (prop, transaçãoConcluida) => {
             </S.Header>
             <S.Verification>
                 <h3>
-                    {transaçãoConcluida ? "Pagamento recebido com sucesso" : "Erro no pagamento"}
+                    {teste ?  "Erro no pagamento": "Pagamento realizado com sucesso" }
                 </h3>
-                <button onClick={prop.close} >Fechar</button>
+                <button onClick={close} >Fechar</button>
             </S.Verification>
         </S.ModalVerification  >
 

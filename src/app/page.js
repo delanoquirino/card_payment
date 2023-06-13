@@ -11,6 +11,7 @@ export default function Home() {
   const [user, setUsers] = useState([]);
   const [selectedUser, setSelectedUser] = useState(null);
   const [modalSuccess, setModalSuccess] = useState(false);
+  const [cardInvalid, setCardInvalid] = useState(false);
 
 
   // abrir modal
@@ -62,9 +63,22 @@ export default function Home() {
           closeModal
         }
         openSuccess={setModalSuccess}
+        Invalid={setCardInvalid}
         selectUser={selectedUser}
       />
-      {modalSuccess && <ModalVerification close={() => {setModalSuccess(false)}}/> }
+     {modalSuccess && <ModalVerification close={() => {setModalSuccess(false)}} teste={cardInvalid} /> }
+     
+     
     </main>
   )
 }
+
+
+//{modalSuccess && <ModalVerification close={() => {setModalSuccess(false)}}/> }
+
+
+/* {modalSuccess ? (
+  <ModalVerification transacaoConcluida={true} close={() => {setModalSuccess(false)}}/>
+) : (
+  <ModalVerification transacaoConcluida={false} close={() => {setModalSuccess(false)}}/>
+)} */
