@@ -66,7 +66,6 @@ export const Modal = ({ open, close, selectUser, openSuccess, Invalid }) => {
   };
 
   const formatCurrency = (value) => {
-    
     const numericValue = value.replace(/\D/g, "");
 
     const formattedValue = (Number(numericValue) / 100).toLocaleString(
@@ -111,6 +110,8 @@ export const Modal = ({ open, close, selectUser, openSuccess, Invalid }) => {
               value={formik.values.selectcard}
               required
             >
+              <option value="">Selecione um cartão</option>{" "}
+              {/* Opção vazia padrão */}
               {cards.map(({ card_number }, index) => {
                 return (
                   <option key={card_number} value={index}>
