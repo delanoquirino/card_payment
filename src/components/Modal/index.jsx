@@ -55,16 +55,6 @@ export const Modal = ({ open, close, selectUser, openSuccess, Invalid }) => {
     },
   });
 
-  const handleSelectChange = (e) => {
-    const selectedCard = cards[e.target.value];
-    const formattedPayment = selectedCard
-      ? "R$ " + formatNumber(formik.values.payment)
-      : formik.values.payment;
-
-    formik.setFieldValue("selectcard", e.target.value);
-    formik.setFieldValue("payment", formattedPayment);
-  };
-
   const formatCurrency = (value) => {
     const numericValue = value.replace(/\D/g, "");
 
