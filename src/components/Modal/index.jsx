@@ -100,14 +100,14 @@ export const Modal = ({ open, close, selectUser, openSuccess, Invalid }) => {
               value={formik.values.selectcard}
               required
             >
-             {cards.map(({ card_number }) => {
-                return (
-                  <option key={card_number} value="Selecione uma cartão:">
-                    Selecione uma cartão:
-                    Cartão com final: {card_number.slice(-4)}
-                  </option>
-                );
-              })}
+           <option value="">Selecione um cartão</option>
+  {cards.map(({ card_number }, index) => {
+    return (
+      <option key={card_number} value={index}>
+        Cartão com final: {card_number.slice(-4)}
+      </option>
+    );
+  })}
             </select>
 
             <button type="submit">Pagar</button>
