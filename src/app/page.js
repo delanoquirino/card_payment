@@ -30,15 +30,18 @@ export default function Home() {
   // requisiçao de dados dos usuarios
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch(
-        "https://www.mocky.io/v2/5d531c4f2e0000620081ddce"
-      );
-      const data = await response.json();
-      setUsers(data);
+      try {
+        const response = await fetch(
+          "https://www.mocky.io/v2/5d531c4f2e0000620081ddce"
+        );
+        const data = await response.json();
+        setUsers(data);
+      } catch (error) {
+        console.error("Ocorreu um erro ao buscar os dados:", error);
+      }
     };
     fetchData();
   }, []);
-
 
   return (
     <main>
@@ -66,7 +69,7 @@ export default function Home() {
         Invalid={setCardInvalid}
         selectUser={selectedUser}
       />
-     {modalSuccess && <ModalVerification close={() => {setModalSuccess(false)}} teste={cardInvalid} /> }
+     {modalSuccess && <ModalVerification close={() => {setModalSuccess(false)}} errorForm={cardInvalid} /> }
      
      
     </main>
