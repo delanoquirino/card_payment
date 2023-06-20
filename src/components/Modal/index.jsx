@@ -99,8 +99,9 @@ export const Modal = ({ open, close, selectUser, openSuccess, Invalid }) => {
               onChange={formik.handleChange}
               value={formik.values.selectcard}
               required
+              defaultValue="Selecione um cartão"
             >
-           <option value="">Selecione um cartão</option>
+          
   {cards.map(({ card_number }, index) => {
     return (
       <option key={card_number} value={index}>
